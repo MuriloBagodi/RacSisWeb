@@ -72,6 +72,6 @@ app.post('/env/joao', (req,res)=>{
 })
 
 
-app.listen(3000, ()=>{
+app.listen(process.env.PORT_ || 3000, ()=>{
     console.log('App Rodando')
 })
