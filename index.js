@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+
+const port = process.env.PORT || 3000;
 var bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
@@ -81,6 +83,6 @@ app.post("/env/joao", (req, res) => {
   envEmail();
 });
 
-app.listen(process.env.PORT_ || 3000, () => {
-  console.log("App Rodando");
+app.listen(port, () => {
+  console.log(`App Rodando em: ${port}`);
 });
