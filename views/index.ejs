@@ -12,6 +12,7 @@
 
     <title>RAC - Sistema de Ar Condicionado Ltda.</title>
     <script>
+       
 
         window.onscroll = function () { scrollFunction() };
 
@@ -30,6 +31,28 @@
 </head>
 
 <body>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto">Rac Sitemas Assistente</strong>
+      <small>1 min atrás</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      <p>E-mail Enviado Com Sucesso</p>
+    </div>
+  </div>
+</div>
+
+<%if(msgEnvio == true){%>
+    <script>
+        document.getElementById("liveToast").className = "toast show"
+        setTimeout(function(){
+            document.getElementById("liveToast").className = "toast hide"
+        }, 5000)
+    </script>
+<%}%>
+
     <div class="container-fluid m-0 p-0 backgroundIMG">
 
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navbar">
@@ -124,9 +147,9 @@
             <hr class="mt-5 ">
             <h2 class="text-center">Missão</h2>
 
-            <div class="row mt-5">
+            <div class="row mt-5 justify-content-center align-items-center">
                 <div class="col-md-6 text-center">
-                    <img src="/img/image_50450177.png" class="img-fluid" alt="">
+                    <img src="/img/missao.jpeg" class="img-fluid" style="max-width: 300px;" alt="">
                 </div>
                 <div class="col-md-6">
                     <p class="txt">A RAC tem a missão de criar, instalar e manter sistemas de climatização, atendendo as
@@ -192,19 +215,19 @@
                                     <form action="/env/renata" method="POST">
                                         <div class="row">
                                             <div class="col-md-6 pb-2">
-                                                <input type="email" class="form-control bg-light" id="exampleFormControlInput1"
+                                                <input type="email" class="form-control bg-light" id="inputEmailRe"
                                                     placeholder="Insira Seu Email:" name="mailR">
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control bg-light" id="exampleFormControlInput2"
+                                                <input type="text" class="form-control bg-light" id="InputAssuntoRe"
                                                     placeholder="Digite o Assunto:" name="assuntoR">
                                             </div>
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-md-12">
-                                                <textarea class="form-control bg-light" id="exampleFormControlTextarea1"
+                                                <textarea class="form-control bg-light" id="textAreaRe"
                                                     name="txtAreaRenata" name="txtAreaR" rows="3" placeholder="Conteudo do Email:"></textarea>
-                                                <button type="submit" class="btn btn-sm btnEnv mt-4 ">Enviar</button>
+                                                <button disabled="true" type="submit" class="btn btn-sm btnEnv mt-4 ">Enviar</button>
                                             </div>
                                         </div>
                                     </form>
@@ -233,19 +256,19 @@
                                     <form action="/env/joao" method="POST">
                                         <div class="row">
                                             <div class="col-md-6 pb-2">
-                                                <input type="email" class="form-control bg-light" id="exampleFormControlInput1"
+                                                <input type="email" class="form-control bg-light" id="inputEmailJ"
                                                     placeholder="Insira Seu Email:" name="txtEmailJ">
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control bg-light" id="exampleFormControlInput2"
+                                                <input type="text" class="form-control bg-light" id="inputAssuntoJ"
                                                     placeholder="Digite o Assunto:" name="txtAssuntoJ">
                                             </div>
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-md-12">
-                                                <textarea class="form-control bg-light" id="exampleFormControlTextarea1"
+                                                <textarea class="form-control bg-light" id="textAreaJ"
                                                     name="txtAreaJoao" rows="3" placeholder="Conteudo do Email:"></textarea>
-                                                <button type="submit" class="btn btn-sm btnEnv mt-4" >Enviar</button>
+                                                <button disabled="true" type="submit" class="btn btn-sm btnEnvJ mt-4" >Enviar</button>
                                             </div>
                                         </div>
                                     </form>
@@ -278,140 +301,17 @@
                 termica com a Ergo Engenharia ou diretamente junto ao cliente final , tendo reconhecido destaque no
                 setor Industrial :</h2>
 
-            <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active tabBtn" id="pills-Farmaceuticas-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-Farmaceuticas" type="button" role="tab"
-                        aria-controls="pills-Farmaceuticas" aria-selected="true">Farmaceuticas</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link tabBtn" id="pills-Automobilistica-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-Automobilistica" type="button" role="tab"
-                        aria-controls="pills-Automobilistica" aria-selected="false">Automobilistica</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link tabBtn" id="pills-Hospitais-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-Hospitais" type="button" role="tab" aria-controls="pills-Hospitais"
-                        aria-selected="false">Hospitais</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link tabBtn" id="pills-Industrias-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-Industrias" type="button" role="tab" aria-controls="pills-Industrias"
-                        aria-selected="false">Industrias</button>
-                </li>
-            </ul>
-            <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active my-5" id="pills-Farmaceuticas" role="tabpanel"
-                    aria-labelledby="pills-Farmaceuticas-tab">
-
-                    <div class="container">
+            <div class="container">
                         <div class="row mt-5">
-                            <div class="col-md-4 text-center my-4">
-                                <img src="img/image 11.png" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-4 text-center my-4">
-                                <img src="img/image 12.png" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-4 text-center my-4">
-                                <img src="img/image 5.png" class="img-fluid" alt="">
-                            </div>
-                        </div>
-                        <div class="row mt-5">
-                            <div class="col-md-4 text-center my-4">
-                                <img src="img/image 4.png" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-4 text-center my-4">
-                                <img src="img/image 6.png" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-4 text-center my-4">
-                                <img src="img/image 7.png" class="img-fluid" alt="">
-                            </div>
-                        </div>
-                        <div class="row mt-5">
-                            <div class="col-md-4 text-center my-4">
-                                <img src="img/image 8.png" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-4 text-center my-4">
-                                <img src="img/image 9.png" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-4 text-center my-4">
-                                <img src="img/image 10.png" class="img-fluid" alt="">
-                            </div>
+                            
+                            
+                                <% empresas.forEach(empresa=>{ %>
+                                    <div class="col-md-4 text-center my-4 justify-content-center d-flex align-items-center">
+                                        <img src="<%=empresa.logo%>" class="img-fluid" style="max-width: 300px;" alt="<%=empresa.name%> Logo">
+                                    </div>
+                                <%})%>                            
                         </div>
                     </div>
-
-                </div>
-                <div class="tab-pane fade my-5" id="pills-Automobilistica" role="tabpanel"
-                    aria-labelledby="pills-Automobilistica-tab">
-                    <div class="container">
-                        <div class="row mt-5">
-                            <div class="col-md-4 text-center my-4">
-                                <img src="img/image 15.png" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-4 text-center my-4">
-                                <img src="img/image 16.png" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-4 text-center mt-4">
-                                <img src="img/image 7.png" class="img-fluid" alt="">
-                            </div>
-                        </div>
-                        <div class="row mt-5">
-                            <div class="col-md-4 text-center">
-
-                            </div>
-                            <div class="col-md-4 text-center ">
-                                <img src="img/image 18.png" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-4 text-center">
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="tab-pane fade my-5" id="pills-Hospitais" role="tabpanel"
-                    aria-labelledby="pills-Hospitais-tab">
-                    <div class="container">
-
-                        <div class="row mt-5">
-                            <div class="col-md-6 text-center my-4">
-                                <img src="img/image 20.png" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-6 text-center my-4">
-                                <img src="img/image 21.png" class="img-fluid" alt="">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="tab-pane fade my-5" id="pills-Industrias" role="tabpanel"
-                    aria-labelledby="pills-Industrias-tab">
-                    <div class="container">
-
-                        <div class="row mt-5">
-                            <div class="col-md-6 text-center my-4">
-                                <img src="img/image 22.png" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-6 text-center my-4">
-                                <img src="img/image 23.png" class="img-fluid" alt="">
-                            </div>
-                        </div>
-
-                        <div class="row mt-5">
-                            <div class="col-md-6 text-center my-4">
-                                <img src="img/image 24.png" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-6 text-center my-4">
-                                <img src="img/image 25.png" class="img-fluid" alt="">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -426,7 +326,7 @@
                         <p class="text-white my-4">Rua Conego Vicente Miguel Marino, 616 <br>
                             Barra Funda - São Paulo <br>
                             CEP: 01135-020
-                            </p>
+                            </p>                        
                     </div>
                     <div class="col-md-5"></div>
                 </div>
@@ -440,6 +340,41 @@
             </div>
         </div>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        let emailR = $("#inputEmailRe")
+        if(!emailR.val()){
+            $(".btnEnv").attr('disabled')
+        }
+        emailR.on("input", function() {
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            if((emailReg.test($(this).val()))){
+                $(".btnEnv").attr('disabled', false)
+            }else{
+                $(".btnEnv").attr('disabled', true)   
+            }
+            if($(this).val() == ""){
+                $(".btnEnv").attr('disabled', true)
+            }
+        });
+
+        let emailJ = $("#inputEmailJ")
+        if(!emailJ.val()){
+            $(".btnEnvJ").attr('disabled')
+        }
+        emailJ.on("input", function() {
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            console.log(emailReg.test($(this).val()), $(this).val())
+            if((emailReg.test($(this).val()))){
+                $(".btnEnvJ").attr('disabled', false)
+            }else{
+                $(".btnEnvJ").attr('disabled', true)   
+            }
+            if($(this).val() == ""){
+                $(".btnEnvJ").attr('disabled', true)
+            }
+        });
+    </script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"

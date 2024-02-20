@@ -1,5 +1,8 @@
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 const express = require("express");
 const app = express();
+import { empresas } from "./public/enterprises.js";
 
 const port = process.env.PORT || 3000;
 var bodyParser = require("body-parser");
@@ -13,21 +16,20 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   res.render("index", {
     title: "RAC - Sistema de Ar Condicionado",
     style: "style/home.css",
+    empresas: await empresas,
+    msgEnvio: false,
   });
 });
 
-const user = "murilosbagodi@hotmail.com";
-const pass = "$$%%123+-/money";
-
-app.post("/env/renata", (req, res) => {
+app.post("/env/renata", async (req, res) => {
   const transporter1 = nodemailer.createTransport({
     host: "smtp.office365.com",
     port: "587",
-    auth: { user: user, pass: pass },
+    auth: { user: process.env.SEND_EMAIL, pass: process.env.SEND_PASS },
   });
 
   var email = req.body.mailR;
@@ -36,22 +38,31 @@ app.post("/env/renata", (req, res) => {
   async function envEmail1() {
     transporter1
       .sendMail({
-        from: email,
+        from: process.env.SEND_EMAIL,
         to: "rgs.rac@gmail.com",
         replyTo: "jccs.rac@gmail.com",
-        subject: assunto,
-        text: textEmail,
+        subject: assunto + " - Destino do email: Site!!!",
+        text: `Email enviado por:  ${email} <br /> ${textEmail}`,
       })
-      .then(() => {
-        res.send("Email enviado com sucesso");
+      .then(async () => {
+        res.render("index", {
+          title: "RAC - Sistema de Ar Condicionado",
+          style: "style/home.css",
+          empresas: await empresas,
+          msgEnvio: true,
+        });
       })
-      .catch((error) => {
-        res.send(
-          "Erro, Tente novamente mais tarde ou troque o navegador utilizado (Recomenda-se o Google-Chrome)"
-        );
+      .catch(async (error) => {
+        console.log(error);
+        res.render("index", {
+          title: "RAC - Sistema de Ar Condicionado",
+          style: "style/home.css",
+          empresas: await empresas,
+          msgEnvio: "erro",
+        });
       });
   }
-  envEmail1().catch(console.error);
+  await envEmail1();
 });
 
 app.post("/env/joao", (req, res) => {
@@ -59,7 +70,7 @@ app.post("/env/joao", (req, res) => {
     const transporter = nodemailer.createTransport({
       host: "smtp.office365.com",
       port: "587",
-      auth: { user: user, pass: pass },
+      auth: { user: process.env.SEND_EMAIL, pass: process.env.SEND_PASS },
     });
 
     var email = req.body.txtEmailJ;
@@ -68,16 +79,27 @@ app.post("/env/joao", (req, res) => {
 
     transporter
       .sendMail({
-        from: email,
+        from: process.env.SEND_EMAIL,
         to: "jccs.rac@gmail.com",
         replyTo: "rgs.rac@gmail.com",
-        subject: assunto,
-        text: textEmail,
+        subject: assunto + " - Destino do email: Site!!!",
+        text: `Email enviado por:  ${email} <br /> ${textEmail}`,
       })
-      .then(() => {
-        res.send("Email enviado com sucesso");
+      .then(async () => {
+        res.render("index", {
+          title: "RAC - Sistema de Ar Condicionado",
+          style: "style/home.css",
+          empresas: await empresas,
+          msgEnvio: true,
+        });
       })
-      .catch(() => {
+      .catch(async () => {
+        res.render("index", {
+          title: "RAC - Sistema de Ar Condicionado",
+          style: "style/home.css",
+          empresas: await empresas,
+          msgEnvio: "erro",
+        });
         console.log(error);
       });
   }
